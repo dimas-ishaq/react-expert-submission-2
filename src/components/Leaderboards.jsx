@@ -1,16 +1,15 @@
-import LeaderboardList from './LeaderboardList'
-import PropTypes from 'prop-types'
-const Leaderboards = ({ leaderboards }) => {
+import PropTypes from 'prop-types';
+import LeaderboardList from './LeaderboardList';
+
+function Leaderboards({ leaderboards }) {
   return (
-    <>
-      <div className="flex flex-col gap-y-2">
-        <h3 className="text-xl font-semibold text-white text-center p-2 bg-green-600 rounded">
-          Leaderboards
-        </h3>
-        <LeaderboardList leaderboards={leaderboards} />
-      </div>
-    </>
-  )
+    <div className="flex flex-col gap-y-2">
+      <h3 className="text-xl font-semibold text-white text-center p-2 bg-green-600 rounded">
+        Leaderboards
+      </h3>
+      <LeaderboardList leaderboards={leaderboards} />
+    </div>
+  );
 }
 Leaderboards.propTypes = {
   leaderboards: PropTypes.arrayOf(
@@ -22,7 +21,7 @@ Leaderboards.propTypes = {
         avatar: PropTypes.string.isRequired,
       }).isRequired,
       score: PropTypes.number.isRequired,
-    })
+    }),
   ),
-}
-export default Leaderboards
+};
+export default Leaderboards;

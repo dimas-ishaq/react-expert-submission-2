@@ -1,12 +1,12 @@
 // configure store
-import { configureStore } from '@reduxjs/toolkit'
-import authUserReducer from './authUser/reducer'
-import userReducer from './users/reducer'
-import threadsReducer from './threads/reducer'
-import leaderboardsReducer from './leaderboard/reducer'
-import isPreloadReducer from './isPreload/reducer'
-import threadDetailReducer from './threadDetail/reducer'
-import { loadingBarReducer } from 'react-redux-loading-bar'
+import { configureStore } from '@reduxjs/toolkit';
+import { loadingBarReducer } from 'react-redux-loading-bar';
+import authUserReducer from './authUser/reducer';
+import userReducer from './users/reducer';
+import threadsReducer from './threads/reducer';
+import leaderboardsReducer from './leaderboard/reducer';
+import isPreloadReducer from './isPreload/reducer';
+import threadDetailReducer from './threadDetail/reducer';
 
 const store = configureStore({
   reducer: {
@@ -18,6 +18,6 @@ const store = configureStore({
     threadDetail: threadDetailReducer,
     loadingBar: loadingBarReducer,
   },
-})
+});
 
-export default store
+export default store;

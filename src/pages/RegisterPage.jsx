@@ -1,15 +1,15 @@
-import RegisterInput from '../components/RegisterInput'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { useDispatch } from 'react-redux'
-import { asyncRegisterUser } from '../states/users/action'
+import RegisterInput from '../components/RegisterInput';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/users/action';
 
-const RegisterPage = () => {
-  const dispatch = useDispatch()
+function RegisterPage() {
+  const dispatch = useDispatch();
 
   const register = ({ username, email, password }) => {
-    dispatch(asyncRegisterUser(username, email, password))
-  }
+    dispatch(asyncRegisterUser(username, email, password));
+  };
   return (
     <>
       <ToastContainer />
@@ -33,7 +33,7 @@ const RegisterPage = () => {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default RegisterPage
+export default RegisterPage;

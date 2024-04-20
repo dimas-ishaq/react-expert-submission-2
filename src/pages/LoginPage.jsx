@@ -1,14 +1,14 @@
-import LoginInput from '../components/LoginInput'
-import { useDispatch } from 'react-redux'
-import { asyncSetAuthUser } from '../states/authUser/action'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import LoginInput from '../components/LoginInput';
+import { asyncSetAuthUser } from '../states/authUser/action';
+import 'react-toastify/dist/ReactToastify.css';
 
-const LoginPage = () => {
-  const dispatch = useDispatch()
+function LoginPage() {
+  const dispatch = useDispatch();
   const onLogin = ({ email, password }) => {
-    dispatch(asyncSetAuthUser({ email, password }))
-  }
+    dispatch(asyncSetAuthUser({ email, password }));
+  };
   return (
     <>
       <ToastContainer />
@@ -32,7 +32,7 @@ const LoginPage = () => {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

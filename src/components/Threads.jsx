@@ -1,13 +1,12 @@
-import ThreadList from './ThreadList'
-import PropTypes from 'prop-types'
-const Threads = ({ threads }) => {
+import PropTypes from 'prop-types';
+import ThreadList from './ThreadList';
+
+function Threads({ threads }) {
   return (
-    <>
-      <div className="flex flex-col w-full mt-5">
-        <ThreadList threads={threads} />
-      </div>
-    </>
-  )
+    <div className="flex flex-col w-full mt-5">
+      <ThreadList threads={threads} />
+    </div>
+  );
 }
 
 Threads.propTypes = {
@@ -22,8 +21,8 @@ Threads.propTypes = {
       ownerId: PropTypes.string.isRequired,
       totalComments: PropTypes.number.isRequired,
       upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
+    }),
   ),
-}
+};
 
-export default Threads
+export default Threads;
