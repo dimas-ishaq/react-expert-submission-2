@@ -1,15 +1,13 @@
-const Searchbar = () => {
+function Searchbar() {
   return (
-    <>
-      <div className="flex flex-col">
-        <input
-          type="text"
-          placeholder="Search threads .."
-          className="w-full px-4 py-2 rounded text-xs font-semibold "
-        />
-      </div>
-    </>
-  )
+    <div className="flex flex-col">
+      <input
+        type="text"
+        placeholder="Search threads .."
+        className="w-full px-4 py-2 rounded text-xs font-semibold "
+      />
+    </div>
+  );
 }
 
-export default Searchbar
+export default Searchbar;

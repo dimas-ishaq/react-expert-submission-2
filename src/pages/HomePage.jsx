@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react'
-import Category from '../components/Category'
-import ThreadInput from '../components/ThreadInput'
-import Threads from '../components/Threads'
-import Leaderboards from '../components/Leaderboards'
-import { useSelector, useDispatch } from 'react-redux'
-import asyncPopulateUsersAndThreads from '../states/shared/action'
-import { asyncAddThread } from '../states/threads/action'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import PropTypes from 'prop-types'
-import Button from '../components/Button'
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import PropTypes from 'prop-types';
+import Category from '../components/Category';
+import ThreadInput from '../components/ThreadInput';
+import Threads from '../components/Threads';
+import Leaderboards from '../components/Leaderboards';
+import asyncPopulateUsersAndThreads from '../states/shared/action';
+import { asyncAddThread } from '../states/threads/action';
+import 'react-toastify/dist/ReactToastify.css';
+import Button from '../components/Button';
 
-const HomePage = ({ signOut }) => {
-  const [filteredThread, setFilteredThread] = useState(null)
-  const dispatch = useDispatch()
+function HomePage({ signOut }) {
+  const [filteredThread, setFilteredThread] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(asyncPopulateUsersAndThreads())
-  }, [dispatch])
+    dispatch(asyncPopulateUsersAndThreads());
+  }, [dispatch]);
 
-  const { threads, leaderboards } = useSelector((states) => states)
+  const { threads, leaderboards } = useSelector((states) => states);
   const addThread = ({ title, body, category }) => {
-    dispatch(asyncAddThread({ title, body, category }))
-  }
+    dispatch(asyncAddThread({ title, body, category }));
+  };
 
   const setThreadCategory = (category = '') => {
     if (category !== '') {
-      const newThread = threads.filter((thread) => thread.category === category)
-      return setFilteredThread(newThread)
+      const newThread = threads.filter((thread) => thread.category === category);
+      return setFilteredThread(newThread);
     }
-    return setFilteredThread(threads)
-  }
+    return setFilteredThread(threads);
+  };
 
   return (
     <>
@@ -53,7 +53,7 @@ const HomePage = ({ signOut }) => {
               >
                 Buat Thread
               </a>
-              <Button variant={'red'} label={'Logout'} onClick={signOut} />
+              <Button variant="red" label="Logout" onClick={signOut} />
             </div>
           </div>
           <div
@@ -64,7 +64,7 @@ const HomePage = ({ signOut }) => {
             className="flex flex-col flex-1 h-screen px-3 overflow-y-auto"
           >
             <ThreadInput addThread={addThread} />
-            <Threads threads={filteredThread ? filteredThread : threads} />
+            <Threads threads={filteredThread || threads} />
           </div>
           <div
             style={{
@@ -78,11 +78,11 @@ const HomePage = ({ signOut }) => {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 HomePage.propTypes = {
   signOut: PropTypes.func.isRequired,
-}
+};
 
-export default HomePage
+export default HomePage;

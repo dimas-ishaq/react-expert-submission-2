@@ -1,29 +1,32 @@
-/* skenario threadDetailReducer
-should return initialState when given by unknown action type
-should return thread when given by RECEIVE_DETAIL_THREADS action type
+/**
+ *  skenario
+ *
+ * - threadDetailReducer function
+ * - should return initialState when given by UNKNOWN action type
+ * - should return thread when given by RECEIVE_DETAIL_THREADS action type
 
 */
 
-import { describe, it, expect } from 'vitest'
-import threadDetailReducer from './reducer'
+import { describe, it, expect } from 'vitest';
+import threadDetailReducer from './reducer';
 
 describe('threadDetailReducer function', () => {
-  it('should return initialState when given by unknown action type', () => {
+  it('should return initialState when given by UNKNOWN action type', () => {
     // arrange
-    const initialState = null
+    const initialState = null;
     const action = {
       type: 'UNKNOWN',
-    }
+    };
 
     // action
-    const nextstate = threadDetailReducer(initialState, action)
+    const nextstate = threadDetailReducer(initialState, action);
 
     // assert
-    expect(nextstate).toEqual(initialState)
-  })
+    expect(nextstate).toEqual(initialState);
+  });
 
   it('should return thread when given by RECEIVE_DETAIL_THREADS action type', () => {
-    const initialState = null
+    const initialState = null;
     const action = {
       type: 'RECEIVE_DETAIL_THREADS',
       payload: {
@@ -45,11 +48,11 @@ describe('threadDetailReducer function', () => {
           },
         },
       },
-    }
+    };
     // action
-    const nextstate = threadDetailReducer(initialState, action)
+    const nextstate = threadDetailReducer(initialState, action);
 
     // assert
-    expect(nextstate).toEqual(action.payload.thread)
-  })
-})
+    expect(nextstate).toEqual(action.payload.thread);
+  });
+});

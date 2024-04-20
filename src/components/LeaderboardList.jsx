@@ -1,16 +1,15 @@
-import LeaderboardItem from './LeaderboardItem'
-import PropTypes from 'prop-types'
-const LeaderboardList = ({ leaderboards }) => {
+import PropTypes from 'prop-types';
+import LeaderboardItem from './LeaderboardItem';
+
+function LeaderboardList({ leaderboards }) {
   return (
-    <>
-      <div className="flex flex-col gap-y-2">
-        {leaderboards &&
-          leaderboards.map((item, index) => (
+    <div className="flex flex-col gap-y-2">
+      {leaderboards
+          && leaderboards.map((item, index) => (
             <LeaderboardItem key={index} user={item.user} score={item.score} />
           ))}
-      </div>
-    </>
-  )
+    </div>
+  );
 }
 
 LeaderboardList.propTypes = {
@@ -23,8 +22,8 @@ LeaderboardList.propTypes = {
         avatar: PropTypes.string.isRequired,
       }).isRequired,
       score: PropTypes.number.isRequired,
-    })
+    }),
   ),
-}
+};
 
-export default LeaderboardList
+export default LeaderboardList;

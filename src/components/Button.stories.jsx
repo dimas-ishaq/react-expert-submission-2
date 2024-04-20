@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from './Button';
 
 export default {
   component: Button,
@@ -6,15 +6,17 @@ export default {
   argTypes: {
     onClick: { action: 'clicked' },
   },
+};
+function Template(args) {
+  return <Button {...args} />;
 }
-const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 
 Primary.args = {
   variant: 'blue',
   label: 'Primary Button',
-  onClick: () => alert('Hello')
+  onClick: () => alert('Hello'),
 };
 
 export const Secondary = Template.bind({});
@@ -22,18 +24,12 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   variant: 'sky',
   label: 'Secondary Button',
-  onClick: () => alert('Holla')
+  onClick: () => alert('Holla'),
 };
 
-
-export const Danger = Template.bind({})
+export const Danger = Template.bind({});
 Danger.args = {
   variant: 'red',
   label: 'Danger Button',
-  onClick: () => alert('danger')
-}
-
-
-
-
-
+  onClick: () => alert('danger'),
+};

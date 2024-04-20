@@ -1,15 +1,13 @@
 const api = (() => {
-  const BASE_URL = 'https://forum-api.dicoding.dev/v1'
+  const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
-  const _fetchWithAuth = (url, options = {}) => {
-    return fetch(url, {
-      ...options,
-      headers: {
-        ...options.headers,
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    })
-  }
+  const _fetchWithAuth = (url, options = {}) => fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
+  });
 
   const login = async ({ email, password }) => {
     try {
@@ -19,23 +17,23 @@ const api = (() => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-      })
+      });
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
 
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { token },
-      } = responseJSON
+      } = responseJSON;
 
-      return token
+      return token;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const register = async ({ name, email, password }) => {
     try {
@@ -45,106 +43,104 @@ const api = (() => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name, email, password }),
-      })
+      });
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { user },
-      } = responseJSON
-      return user
+      } = responseJSON;
+      return user;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const putAccessToken = (token) => {
-    localStorage.setItem('userToken', token)
-  }
-  const getAccessToken = () => {
-    return localStorage.getItem('userToken')
-  }
+    localStorage.setItem('userToken', token);
+  };
+  const getAccessToken = () => localStorage.getItem('userToken');
 
   const getOwnProfile = async () => {
     try {
-      const response = await _fetchWithAuth(`${BASE_URL}/users/me`)
-      const responseJSON = await response.json()
+      const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
+      const responseJSON = await response.json();
 
-      const { status, message } = responseJSON
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
 
       const {
         data: { user },
-      } = responseJSON
-      return user
+      } = responseJSON;
+      return user;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const getAllUsers = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users`, {
         method: 'GET',
-      })
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      });
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { users },
-      } = responseJSON
-      return users
+      } = responseJSON;
+      return users;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const getAllThreads = async () => {
     try {
       const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
         method: 'GET',
-      })
-      const responseJSON = await response.json()
+      });
+      const responseJSON = await response.json();
 
-      const { status, message } = responseJSON
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { threads },
-      } = responseJSON
-      return threads
+      } = responseJSON;
+      return threads;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const getThreadById = async (id) => {
     try {
       const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}`, {
         method: 'GET',
-      })
+      });
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { detailThread },
-      } = responseJSON
-      return detailThread
+      } = responseJSON;
+      return detailThread;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const createThread = async ({ title, body, category }) => {
     try {
@@ -158,41 +154,41 @@ const api = (() => {
           body,
           category,
         }),
-      })
+      });
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
 
       const {
         data: { thread },
-      } = responseJSON
-      return thread
+      } = responseJSON;
+      return thread;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const getLeaderboards = async () => {
     try {
       const response = await fetch(`${BASE_URL}/leaderboards`, {
         method: 'GET',
-      })
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      });
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { leaderboards },
-      } = responseJSON
-      return leaderboards
+      } = responseJSON;
+      return leaderboards;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const upVoteThread = async (threadId) => {
     try {
@@ -200,23 +196,23 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/up-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
 
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const downVoteThread = async (threadId) => {
     try {
@@ -224,23 +220,23 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/down-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
 
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const neutralizeVoteThread = async (threadId) => {
     try {
@@ -248,23 +244,23 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/neutral-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
 
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 
   const createComment = async (threadId, content) => {
     try {
@@ -276,22 +272,22 @@ const api = (() => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ content }),
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { comment },
-      } = responseJSON
-      return comment
+      } = responseJSON;
+      return comment;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   const upVoteComment = async (threadId, commentId) => {
     try {
@@ -299,22 +295,22 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   const downVoteComment = async (threadId, commentId) => {
     try {
@@ -322,22 +318,22 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   const neutralizeVoteComment = async (threadId, commentId) => {
     try {
@@ -345,22 +341,22 @@ const api = (() => {
         `${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
         {
           method: 'POST',
-        }
-      )
+        },
+      );
 
-      const responseJSON = await response.json()
-      const { status, message } = responseJSON
+      const responseJSON = await response.json();
+      const { status, message } = responseJSON;
       if (status !== 'success') {
-        throw new Error(message)
+        throw new Error(message);
       }
       const {
         data: { vote },
-      } = responseJSON
-      return vote
+      } = responseJSON;
+      return vote;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   return {
     login,
@@ -380,7 +376,7 @@ const api = (() => {
     upVoteComment,
     downVoteComment,
     neutralizeVoteComment,
-  }
-})()
+  };
+})();
 
-export default api
+export default api;

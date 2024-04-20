@@ -1,11 +1,11 @@
-import ThreadDetailCommentsItem from './ThreadDetailCommentsItem'
-import PropTypes from 'prop-types'
-const ThreadDetailCommentsList = ({ comments, threadId }) => {
+import PropTypes from 'prop-types';
+import ThreadDetailCommentsItem from './ThreadDetailCommentsItem';
+
+function ThreadDetailCommentsList({ comments, threadId }) {
   return (
-    <>
-      <div className="flex flex-col gap-y-2">
-        {comments &&
-          comments.map((item, index) => (
+    <div className="flex flex-col gap-y-2">
+      {comments
+          && comments.map((item, index) => (
             <ThreadDetailCommentsItem
               key={index}
               id={item.id}
@@ -17,14 +17,13 @@ const ThreadDetailCommentsList = ({ comments, threadId }) => {
               threadId={threadId}
             />
           ))}
-      </div>
-    </>
-  )
+    </div>
+  );
 }
 
 ThreadDetailCommentsList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   threadId: PropTypes.string.isRequired,
-}
+};
 
-export default ThreadDetailCommentsList
+export default ThreadDetailCommentsList;

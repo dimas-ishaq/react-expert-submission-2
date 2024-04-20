@@ -1,31 +1,34 @@
-/* skenario thread
-should return initialState when given by unknown action type
-should return thread when given by RECEIVE_THREADS action type
-should return thread when given by ADD_THREAD action type
+/**
+ *  skenario
+ *
+ * - threadReducer function
+ * - should return initialState when given by UNKNOWN action type
+ * - should return thread when given by RECEIVE_THREADS action type
+ * - should return thread when given by ADD_THREAD action type
 
 */
 
-import { describe, it, expect } from 'vitest'
-import threadsReducer from './reducer'
+import { describe, it, expect } from 'vitest';
+import threadsReducer from './reducer';
 
 describe('threadReducer function', () => {
-  it('should return initialState when given by unknown action type', () => {
+  it('should return initialState when given by UNKNOWN action type', () => {
     // arrange
-    const initialState = []
+    const initialState = [];
     const action = {
       type: 'UNKNOWN',
-    }
+    };
 
     // action
-    const nextstate = threadsReducer(initialState, action)
+    const nextstate = threadsReducer(initialState, action);
 
     // assert
-    expect(nextstate).toEqual(initialState)
-  })
+    expect(nextstate).toEqual(initialState);
+  });
 
   it('should return thread when given by RECEIVE_THREADS action type', () => {
     // arrange
-    const initialState = []
+    const initialState = [];
     const action = {
       type: 'RECEIVE_THREADS',
       payload: {
@@ -43,14 +46,14 @@ describe('threadReducer function', () => {
           },
         ],
       },
-    }
+    };
 
     // action
-    const nextstate = threadsReducer(initialState, action)
+    const nextstate = threadsReducer(initialState, action);
 
     // assert
-    expect(nextstate).toEqual(action.payload.threads)
-  })
+    expect(nextstate).toEqual(action.payload.threads);
+  });
 
   it('should return thread when given by ADD_THREAD action type', () => {
     // arrange
@@ -66,7 +69,7 @@ describe('threadReducer function', () => {
         downVotesBy: [],
         totalComments: 0,
       },
-    ]
+    ];
     const action = {
       type: 'ADD_THREAD',
       payload: {
@@ -82,12 +85,12 @@ describe('threadReducer function', () => {
           totalComments: 0,
         },
       },
-    }
+    };
 
     // action
-    const nextstate = threadsReducer(initialState, action)
+    const nextstate = threadsReducer(initialState, action);
 
     // assert
-    expect(nextstate).toEqual([action.payload.thread, ...initialState])
-  })
-})
+    expect(nextstate).toEqual([action.payload.thread, ...initialState]);
+  });
+});

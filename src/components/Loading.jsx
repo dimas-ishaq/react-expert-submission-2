@@ -1,11 +1,11 @@
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar';
 
-const Loading = () => {
+function Loading() {
   return (
     <div className="loading">
       <LoadingBar />
     </div>
-  )
+  );
 }
 
-export default Loading
+export default Loading;

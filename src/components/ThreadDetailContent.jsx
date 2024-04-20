@@ -1,30 +1,31 @@
-import PropTypes from 'prop-types'
-const ThreadDetailContent = ({ id, title, body, category, owner }) => {
-  return (
-    <>
-      <div id={id} className="flex flex-col gap-y-2">
-        <div className="flex justify-between items-center">
-          <div className="flex justify-center items-center gap-x-3">
-            <img
-              src={owner.avatar}
-              className="object-fit w-8 rounded-full"
-              alt="avatar"
-            />
-            <p className="text-sm text-white font-semibold">{owner.name}</p>
-          </div>
+import PropTypes from 'prop-types';
 
-          <p className="px-3 py-2 rounded-full bg-blue-600 text-white text-sm font-medium">
-            {category}
-          </p>
+function ThreadDetailContent({
+  id, title, body, category, owner,
+}) {
+  return (
+    <div id={id} className="flex flex-col gap-y-2">
+      <div className="flex justify-between items-center">
+        <div className="flex justify-center items-center gap-x-3">
+          <img
+            src={owner.avatar}
+            className="object-fit w-8 rounded-full"
+            alt="avatar"
+          />
+          <p className="text-sm text-white font-semibold">{owner.name}</p>
         </div>
-        <h3 className="text-white">{title}</h3>
-        <div
-          className="text-white"
-          dangerouslySetInnerHTML={{ __html: body }}
-        />
+
+        <p className="px-3 py-2 rounded-full bg-blue-600 text-white text-sm font-medium">
+          {category}
+        </p>
       </div>
-    </>
-  )
+      <h3 className="text-white">{title}</h3>
+      <div
+        className="text-white"
+        dangerouslySetInnerHTML={{ __html: body }}
+      />
+    </div>
+  );
 }
 
 ThreadDetailContent.propTypes = {
@@ -37,6 +38,6 @@ ThreadDetailContent.propTypes = {
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
-}
+};
 
-export default ThreadDetailContent
+export default ThreadDetailContent;
